@@ -35,13 +35,25 @@ struct ContentView: View {
                 //когда нужно провести авторизацию,
                 //проверить поля на пустоту и тд
                 VStack {
+                    //Такой вариант хорошо работает кнопка полностью исчезает
+                    // и не занимает место
                     NavigationLink(
                         destination: Text("Destination"),
-                        isActive: self.$isActiv)
-                    {
+                        isActive: self.$isActiv
+                    ){
                         EmptyView()
                     }
                     .buttonStyle(PlainButtonStyle())
+                    
+                    // Такой вариант не очень удобен так как его нужно использовать
+                    // всместе с zstack
+                    // Такую кнопку хоть и не видно но она занимает место
+                    NavigationLink(
+                        destination: Text("Destination"),
+                        isActive: self.$isActiv
+                    ){
+                        EmptyView()
+                    }.opacity(0)
                     
                     Button(action: {
                         self.isActiv = true
